@@ -37,7 +37,7 @@ let jokes = [
 // serve back static files
 app.use(express.static('server/public'));
 
-
+// Route to get jokes
 app.get('/server/server.js', function(req, res) {
   console.log('Request for /jokes was made');
 
@@ -49,7 +49,21 @@ app.get('/server/server.js', function(req, res) {
 });
 
 
+// Post route
+app.post('/server/server.js', function(req, res) {
+  // req.body is the data that the client has sent in the request
+  // req.body is a thing we get from bodyParser
+  console.log('POST some data!', req.body);
 
+  // Add my new quote to the jokes
+  jokes.push(req.body);
+
+
+  // The server always needs to respond!
+  // Status 201 = 'Created'
+  res.sendStatus(201);
+
+})
 
 
 
