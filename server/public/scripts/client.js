@@ -37,12 +37,12 @@ function ShowJoke(event) {
 
 // grab a data from the inputs
 const joke = $('#whoseJokeIn').val();
-const question = $('#whoseJokeIn').val();
-const punchLine = $('#whoseJokeIn').val();
+const question = $('#questionIn').val();
+const punchLine = $('#punchlineIn').val();
 
     $('#whoseJokeIn').val('');
-    $('#whoseJokeIn').val('');
-    $('#whoseJokeIn').val('');
+    $('#questionIn').val('');
+    $('#punchlineIn').val('');
 
 
  // Make a POST request to the server, sending the user input 
