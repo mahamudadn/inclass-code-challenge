@@ -25,7 +25,7 @@ function getJokes(event) {
         alert('request failed')
         console.log('request failed', error);
     })
-  
+    ShowJoke();
 }
 
 //click Handler 
@@ -34,7 +34,7 @@ function ShowJoke(event) {
 // Don't refresh the page when I click submit!
 event.preventDefault();
 
-// garab a data from the inputs
+// grab a data from the inputs
 const joke = $('#whoseJokeIn').val();
 const question = $('#whoseJokeIn').val();
 const punchLine = $('#whoseJokeIn').val();
@@ -52,13 +52,21 @@ const punchLine = $('#whoseJokeIn').val();
         }
     }).then(function(response) {
         console.log('success!');
-        getQuotes();
+        ShowJoke();
     }).catch(function(error) {
-        alert('Error with quotes post!');
+        alert('Error with joke post!');
         console.log('Error with post: ', error);
     })
 }
 
 
 
-
+function renderToDom(jokes) {
+    $('#jokes').empty();
+    // use jQuery to append jokes to DOM
+    for (let joke of jokes ) {
+        $('#jokes').append(`
+            <li>${joke.whoseJoke}  ${joke.jokeQuestion} ${joke.punchLine}</li>
+        `);
+    }
+}
