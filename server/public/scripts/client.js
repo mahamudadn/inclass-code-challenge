@@ -12,8 +12,18 @@ function onReady() {
 // Function That gets jokes from the server
 
 function getJokes(event) {
-    // $.ajax({
+    $.ajax({
+        method: 'GET',
+        url:'/server/server.js',
 
-    // })
+    }).then(function(response){
+        console.log('response success', response);
+
+        renderToDom(response);
+
+    }).catch(function(error){
+        alert('request failed')
+        console.log('request failed', error);
+    })
   
 }
