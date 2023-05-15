@@ -40,6 +40,11 @@ const joke = $('#whoseJokeIn').val();
 const question = $('#whoseJokeIn').val();
 const punchLine = $('#whoseJokeIn').val();
 
+    $('#whoseJokeIn').val('');
+    $('#whoseJokeIn').val('');
+    $('#whoseJokeIn').val('');
+
+
  // Make a POST request to the server, sending the user input 
     // data along
     $.ajax({
