@@ -39,6 +39,26 @@ const joke = $('#whoseJokeIn').val();
 const question = $('#whoseJokeIn').val();
 const punchLine = $('#whoseJokeIn').val();
 
+ // Make a POST request to the server, sending the user input 
+    // data along
+    $.ajax({
+        method: 'POST',
+        url: '/server/server.js',
+        data: {
+            whoseJoke: "Luke",
+            jokeQuestion: "Two fish are in a tank. What did one fish say to the other?",
+            punchLine: "Do you know how to drive this thing?"
 
-
+        }
+    }).then(function(response) {
+        console.log('success!');
+        getQuotes();
+    }).catch(function(error) {
+        alert('Error with quotes post!');
+        console.log('Error with post: ', error);
+    })
 }
+
+
+
+
