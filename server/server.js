@@ -38,14 +38,21 @@ let jokes = [
 app.use(express.static('server/public'));
 
 
-app.get('/server/sever.js', function(req, res) {
-  console.log('Request for /quotes was made');
+app.get('/server/server.js', function(req, res) {
+  console.log('Request for /jokes was made');
 
   // send back list of quotes to client
   res.send(jokes);
+  
+  // If I want to send an error: 
+  res.sendStatus(500);
+});
 
 
-}
+
+
+
+
 
 app.listen(PORT, () => {
   console.log('server running on: ', PORT);
