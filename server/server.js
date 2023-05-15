@@ -38,19 +38,19 @@ let jokes = [
 app.use(express.static('server/public'));
 
 // Route to get jokes
-app.get('/server/server.js', function(req, res) {
+app.get('/jokes', function(req, res) {
   console.log('Request for /jokes was made');
 
   // send back list of quotes to client
   res.send(jokes);
   
-  // If I want to send an error: 
-  res.sendStatus(500);
+  // // If I want to send an error: 
+  // res.sendStatus(500);
 });
 
 
 // Post route
-app.post('/server/server.js', function(req, res) {
+app.post('/jokes', function(req, res) {
   // req.body is the data that the client has sent in the request
   // req.body is a thing we get from bodyParser
   console.log('POST some data!', req.body);

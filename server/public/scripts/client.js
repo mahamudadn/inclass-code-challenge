@@ -4,9 +4,10 @@ $( document ).ready( onReady );
 
 function onReady() {
     console.log('DOM ready');
+
 //click listeners
-    $('#add-Joke').on('click', ShowJoke)
-   
+    $('#addJokeButton').on('click', ShowJoke)
+    getJokes();
 }
 
 // Function That gets jokes from the server
@@ -14,7 +15,7 @@ function onReady() {
 function getJokes(event) {
     $.ajax({
         method: 'GET',
-        url:'/server/server.js',
+        url:'/jokes',
 
     }).then(function(response){
         console.log('response success', response);
@@ -25,14 +26,14 @@ function getJokes(event) {
         alert('request failed')
         console.log('request failed', error);
     })
-    ShowJoke();
+    
 }
 
 //click Handler 
 
 function ShowJoke(event) {
 // Don't refresh the page when I click submit!
-event.preventDefault();
+    event.preventDefault();
 
 // grab a data from the inputs
 const joke = $('#whoseJokeIn').val();
@@ -43,29 +44,29 @@ const punchLine = $('#whoseJokeIn').val();
     // data along
     $.ajax({
         method: 'POST',
-        url: '/server/server.js',
+        url: '/jokes',
         data: {
-            whoseJoke: "Luke",
-            jokeQuestion: "Two fish are in a tank. What did one fish say to the other?",
-            punchLine: "Do you know how to drive this thing?"
+            whoseJoke: joke,
+            jokeQuestion: question,
+            punchLine: punchLine
 
         }
     }).then(function(response) {
         console.log('success!');
-        ShowJoke();
+        getJokes()
     }).catch(function(error) {
         alert('Error with joke post!');
-        console.log('Error with post: ', error);
-    })
+        // console.log('Error with post: ', error);
+    });
 }
 
 
 
 function renderToDom(jokes) {
-    $('#jokes').empty();
+    $('#outputDiv').empty();
     // use jQuery to append jokes to DOM
     for (let joke of jokes ) {
-        $('#jokes').append(`
+        $('#outputDiv').append(`
             <li>${joke.whoseJoke}  ${joke.jokeQuestion} ${joke.punchLine}</li>
         `);
     }
